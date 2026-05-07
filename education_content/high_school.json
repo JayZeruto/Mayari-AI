@@ -4,14 +4,26 @@
     {
       "id": "what_is_malware",
       "title": "What is malware?",
-      "keywords": ["malware", "virus", "ransomware", "spyware"],
-      "response": "Malware is software made to damage or take control of computers. In high school cybersecurity, students learn how malware works so they can protect systems and keep information safe."
+      "keywords": ["malware", "virus", "ransomware", "spyware", "trojan", "worm"],
+      "response": "Malware is malicious software designed to harm, exploit, or gain unauthorized access to computer systems. Think of it as digital parasites that infect computers and networks. Common types include viruses (which replicate themselves), ransomware (which encrypts your files and demands payment), spyware (which secretly monitors your activity), and trojans (which disguise themselves as legitimate software). In cybersecurity classes, students learn how malware spreads through email attachments, infected websites, or USB drives, and how to protect against it using antivirus software, firewalls, and safe computing habits."
     },
     {
       "id": "what_is_cybersecurity",
       "title": "What is cybersecurity?",
-      "keywords": ["cybersecurity", "security", "information security", "infosec"],
-      "response": "Cybersecurity is the practice of defending computers, networks, and data from attacks. It includes safe coding, passwords, encryption, and finding vulnerabilities before attackers do."
+      "keywords": ["cybersecurity", "security", "information security", "infosec", "cyber defense"],
+      "response": "Cybersecurity is the practice of protecting computer systems, networks, and data from digital attacks, theft, and damage. It's like being a digital bodyguard for information. Key concepts include: confidentiality (keeping information private), integrity (ensuring data isn't altered), and availability (making sure systems work when needed). Students learn about encryption (scrambling data so only authorized people can read it), access controls (passwords and permissions), network security (firewalls and intrusion detection), and ethical hacking (testing systems for weaknesses before attackers find them)."
+    },
+    {
+      "id": "what_is_computer",
+      "title": "What is a computer?",
+      "keywords": ["computer", "computing", "hardware", "software"],
+      "response": "A computer is an electronic device that processes information according to programmed instructions. At its core, it consists of hardware (physical components like the CPU, memory, storage, and input/output devices) and software (programs and operating systems that tell the hardware what to do). Modern computers follow the von Neumann architecture with a central processing unit (CPU) that executes instructions stored in memory. Computers can perform complex calculations, store and retrieve data, communicate over networks, and run applications that solve real-world problems. Understanding computers involves learning about binary systems, algorithms, data structures, and how hardware and software work together."
+    },
+    {
+      "id": "what_is_programming",
+      "title": "What is programming?",
+      "keywords": ["programming", "coding", "software development", "algorithm"],
+      "response": "Programming is the process of writing instructions that computers can understand and execute. It's like writing a detailed recipe that tells a computer exactly what to do, step by step. Programmers use programming languages (like Python, Java, or C++) to write code that solves problems. Key concepts include variables (storage for data), loops (repeating actions), conditionals (making decisions), functions (reusable code blocks), and algorithms (step-by-step problem-solving procedures). Good programming involves breaking complex problems into smaller, manageable parts, writing clear and efficient code, and testing to ensure it works correctly. Programming skills are essential for creating software, websites, mobile apps, and solving computational problems."
     }
   ]
 }

@@ -4,10 +4,33 @@ A localized, Strict Logics AI assistant focused on technical literacy, Education
 
 > **Mayari** (Philippine goddess of the Moon) represents a "guiding light" through complex technical and educational information.
 
-## 🛡️ Project Overview
-Mayari is a localized background service designed to bridge the gap between everyday users and technical systems. Built with a **"Strict Logic" core**, this project prioritizes academic accuracy and security, specifically designed to be resistant to jailbreaking and misinformation.
+## 🛡️ Security Features
+Mayari AI implements comprehensive security measures to protect against various cyber threats:
 
-## ✨ Key Features
+### 🔒 Core Security Components
+* **Input Validation & Sanitization:** Prevents XSS, injection attacks, and malicious content
+* **Rate Limiting:** Protects against DDoS and abuse attempts
+* **Encryption:** AES-256 encryption for sensitive data using Fernet
+* **Authentication:** Secure password hashing with PBKDF2
+* **Logging & Monitoring:** Comprehensive security event logging and alerting
+* **Pattern Detection:** Advanced regex patterns to detect jailbreak attempts and malware requests
+
+### 🚨 Security Protections
+* Blocks prompt injection and jailbreak attempts
+* Prevents execution of dangerous commands
+* Sanitizes HTML and script content
+* Implements secure error handling to prevent information leakage
+* Uses cryptographically secure random number generation
+
+### 🔧 Security Configuration
+Security settings can be configured via environment variables:
+- `MAYARI_ENCRYPTION_KEY`: Base64-encoded encryption key
+- Rate limits and other settings configurable in `SecurityConfig`
+
+### 📋 Dependencies
+See `requirements.txt` for security-related dependencies. All dependencies are kept minimal and regularly audited for vulnerabilities.
+
+## 🛠️ Technical Foundation & Compliance
 * **Technical Translation:** Converts complex system errors into plain language for non-technical users.
 * **Secure Logic Core:** Built on verified data to prevent hallucinations and malicious content generation.
 * **Adaptive Tutoring:** Fact-based learning in Science, Law, and the Arts, tailored for users ages 4-65.

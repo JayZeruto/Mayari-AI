@@ -68,6 +68,10 @@ class EducationModule:
         return self.find_content(normalized) is not None
 
     def get_learning_response(self, user_input):
+        """
+        Generates an educational response based on the user's query and detected education level.
+        Provides more detailed explanations for higher education levels while keeping language accessible.
+        """
         normalized = self.normalize(user_input)
 
         if self.is_malicious_request(normalized):
@@ -75,13 +79,37 @@ class EducationModule:
 
         content = self.find_content(normalized)
         if content is not None:
-            return f"Mayari says ({content['level']}): {content['response']}"
+            level = content['level']
+            response = content['response']
 
+            # Add level-appropriate context and encouragement
+            if level == "college":
+                return f"Mayari says (college level): {response}\n\n💡 This topic connects to broader concepts in computer science. Would you like me to explain related areas like algorithms, system design, or security principles?"
+            elif level == "high_school":
+                return f"Mayari says (high school level): {response}\n\n📚 This is a key concept in computer science and cybersecurity. Many students find it fascinating how these technical ideas apply to real-world technology."
+            else:
+                return f"Mayari says ({level}): {response}"
+
+        # If no specific content found but educational intent detected
         if self.student_intent.search(normalized):
-            return (
-                "Mayari says: I can help teach technical concepts in a safe way. "
-                "Ask me about systems, programming, cybersecurity, or how technology works."
-            )
+            level = self.detect_education_level(normalized)
+            if level == "college":
+                return (
+                    "Mayari says: I can help explain advanced technical concepts in computer science, "
+                    "cybersecurity, software engineering, and system design. What specific topic interests you? "
+                    "I can provide detailed explanations that connect theoretical concepts to practical applications."
+                )
+            elif level == "high_school":
+                return (
+                    "Mayari says: I can help teach technical concepts for high school students. "
+                    "Ask me about programming, cybersecurity basics, computer systems, or how technology works. "
+                    "I'll explain things in a clear, detailed way that's appropriate for your level."
+                )
+            else:
+                return (
+                    "Mayari says: I can help teach technical concepts in a safe way. "
+                    "Ask me about systems, programming, cybersecurity, or how technology works."
+                )
 
         return (
             "Mayari says: I can answer technical study questions safely. "
@@ -104,15 +132,45 @@ class EducationModule:
         return None
 
     def detect_education_level(self, user_input):
-        if re.search(r"\b(?:preschool|kindergarten|pre-k|pre k|prek)\b", user_input):
+        """
+        Detects the appropriate education level based on user input.
+        Returns the most appropriate level or None if no specific level is detected.
+        """
+        input_lower = user_input.lower()
+
+        # Explicit level mentions (highest priority)
+        if re.search(r"\b(?:preschool|kindergarten|pre-k|pre k|prek|young children|toddlers)\b", input_lower):
             return "preschool"
-        if re.search(r"\b(?:elementary|grade|primary|school age|kids)\b", user_input):
+        if re.search(r"\b(?:elementary|grade|primary|school age|kids|children|grade school)\b", input_lower):
             return "elementary"
-        if re.search(r"\b(?:middle school|junior high|intermediate)\b", user_input):
+        if re.search(r"\b(?:middle school|junior high|intermediate|middle schooler)\b", input_lower):
             return "elementary"
-        if re.search(r"\b(?:high school|secondary|teenager|teen)\b", user_input):
+        if re.search(r"\b(?:high school|secondary|teenager|teen|high schooler)\b", input_lower):
             return "high_school"
-        if re.search(r"\b(?:college|university|undergraduate|graduate|adult)\b", user_input):
+        if re.search(r"\b(?:college|university|undergraduate|graduate|adult|advanced|detailed|in-depth|comprehensive)\b", input_lower):
             return "college"
+
+        # Context-based detection for advanced explanations
+        # Look for technical terms that suggest higher knowledge level
+        advanced_terms = [
+            r"\b(?:architecture|algorithm|complexity|paradigm|framework|infrastructure)\b",
+            r"\b(?:von neumann|turing|church-turing|computational|theoretical)\b",
+            r"\b(?:ethical hacking|penetration testing|vulnerability|exploit)\b",
+            r"\b(?:cybersecurity|encryption|authentication|authorization)\b",
+            r"\b(?:software engineering|design patterns|abstraction|encapsulation)\b"
+        ]
+
+        if any(re.search(term, input_lower) for term in advanced_terms):
+            return "college"
+
+        # Intermediate terms for high school level
+        intermediate_terms = [
+            r"\b(?:programming|coding|software|hardware|network|database)\b",
+            r"\b(?:malware|virus|ransomware|spyware|cybersecurity)\b",
+            r"\b(?:function|variable|loop|conditional|algorithm)\b"
+        ]
+
+        if any(re.search(term, input_lower) for term in intermediate_terms):
+            return "high_school"
 
         return None

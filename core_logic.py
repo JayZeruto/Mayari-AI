@@ -1,9 +1,11 @@
 import re
 from education import EducationModule
+from security import SecurityManager, SecurityViolationError
 
 class MayariCore:
     def __init__(self):
         self.name = "Mayari"
+        self.security = SecurityManager()
 
         # Blocked phrases that are commonly used in jailbreak or prompt injection attempts.
         self.blacklist_phrases = [
@@ -79,18 +81,27 @@ class MayariCore:
 
         return findings
 
-    def input_sanitizer(self, user_input):
+    def input_sanitizer(self, user_input, client_ip="127.0.0.1"):
         """
-        Validates the user query and returns a safe normalized input or a refusal message.
+        Enhanced security validation using comprehensive security checks.
         """
-        if not isinstance(user_input, str) or not user_input.strip():
-            return False, "⚠️ Invalid input: Please type a question or request."
+        try:
+            # Use the comprehensive security check
+            is_safe, reason = self.security.process_security_check(user_input, client_ip)
+            if not is_safe:
+                return False, reason
 
-        findings = self.detect_malicious_intent(user_input)
-        if findings:
-            return False, f"⚠️ Logic Breach Detected: {', '.join(findings)}"
+            # Additional legacy pattern checks for redundancy
+            findings = self.detect_malicious_intent(user_input)
+            if findings:
+                self.security.logger.warning(f"Legacy pattern detection: {', '.join(findings)}")
+                return False, f"⚠️ Logic Breach Detected: {', '.join(findings)}"
 
-        return True, self.normalize(user_input)
+            return True, self.normalize(user_input)
+
+        except Exception as e:
+            self.security.logger.error(f"Security check error: {str(e)}")
+            return False, "⚠️ Security Check Failed: System error"
 
     def technical_translator(self, error_code):
         """
@@ -121,11 +132,15 @@ class MayariCore:
             "If you need a specific explanation, please ask with clear, non-harmful details."
         )
 
-    def process_query(self, user_input):
+    def process_query(self, user_input, client_ip="127.0.0.1"):
         """
-        Top-level query processing pipeline.
+        Top-level query processing pipeline with comprehensive security.
         """
-        return self.generate_response(user_input)
+        try:
+            return self.generate_response(user_input)
+        except Exception as e:
+            self.security.logger.error(f"Error processing query: {str(e)}")
+            return "⚠️ An error occurred while processing your request. Please try again."
 
 
 def run_interactive_shell():

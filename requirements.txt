@@ -1,0 +1,11 @@
+# Mayari AI Dependencies
+# Keep dependencies minimal and regularly updated for security
+
+cryptography>=48.0.0  # For encryption and secure data handling
+# Standard library modules used: re, logging, os, secrets, time, collections, typing, hashlib, hmac, base64
+
+# For production deployment, consider:
+# flask>=2.0.0  # If deploying as web service
+# flask-limiter>=3.0.0  # For advanced rate limiting
+# bcrypt>=4.0.0  # Alternative password hashing
+# python-jose[cryptography]>=3.3.0  # For JWT tokens
