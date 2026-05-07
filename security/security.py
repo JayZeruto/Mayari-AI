@@ -18,6 +18,8 @@ import secrets
 import time
 import json
 import hashlib
+import unicodedata
+import urllib.parse
 from collections import defaultdict
 from dataclasses import dataclass, asdict
 from typing import Dict, List, Optional, Tuple, Any
@@ -329,7 +331,117 @@ class InputValidator:
             'scientific_notation_attack': re.compile(r'\d+\.?\d*[eE][+-]?\d+.*\b(SELECT|INSERT|UPDATE|DELETE|DROP|UNION)\b', re.IGNORECASE),
             'math_operator_injection': re.compile(r'[\u220f\u2211\u221a\u222b\u222e].*<.*>.*[\u220f\u2211\u221a\u222b\u222e]', re.IGNORECASE),  # ∑∫√∏∮ with HTML
             'complex_number_attack': re.compile(r'\d+[ij]\s*[;].*\b(SELECT|INSERT|UPDATE|DELETE|DROP)\b', re.IGNORECASE),
+            # URL/Hex encoding attack patterns
+            'url_encoded_sql': re.compile(r'%[0-9a-fA-F]{2}.*(%73%65%6c%65%63%74|%75%6e%69%6f%6e|%64%72%6f%70)', re.IGNORECASE),  # URL encoded SQL keywords
+            'hex_encoded_script': re.compile(r'%[0-9a-fA-F]{2}.*(%73%63%72%69%70%74|%69%66%72%61%6d%65)', re.IGNORECASE),  # URL encoded script tags
+            'double_encoded': re.compile(r'%25[0-9a-fA-F]{2}%[0-9a-fA-F]{2}', re.IGNORECASE),  # Double URL encoding
+            'hex_obfuscation': re.compile(r'\\x[0-9a-fA-F]{2}.*(\\x73\\x65\\x6c\\x65\\x63\\x74|\\x75\\x6e\\x69\\x6f\\x6e)', re.IGNORECASE),  # Hex encoded SQL
         }
+
+    def _normalize_unicode(self, input_text: str) -> str:
+        """
+        Normalize Unicode to prevent homograph attacks.
+        Converts visually similar characters to canonical forms.
+        """
+        # NFC normalization (Canonical Composition) - preferred for security
+        normalized = unicodedata.normalize('NFC', input_text)
+
+        # Additional checks for suspicious Unicode characters
+        suspicious_chars = []
+        for char in normalized:
+            # Check for characters that are not in common Latin script ranges
+            # but might look similar to Latin characters (homoglyphs)
+            code_point = ord(char)
+
+            # Common homoglyph ranges from different scripts
+            suspicious_ranges = [
+                (0x0400, 0x04FF),  # Cyrillic
+                (0x0370, 0x03FF),  # Greek and Coptic
+                (0x2C80, 0x2CFF),  # Coptic
+                (0x1F00, 0x1FFF),  # Greek Extended
+                (0x0530, 0x058F),  # Armenian
+                (0x0590, 0x05FF),  # Hebrew
+                (0x0600, 0x06FF),  # Arabic
+                (0x0750, 0x077F),  # Arabic Supplement
+                (0xFB50, 0xFDFF),  # Arabic Presentation Forms-A
+                (0xFE70, 0xFEFF),  # Arabic Presentation Forms-B
+            ]
+
+            # Check if character is in a suspicious range and could be a homoglyph
+            for start, end in suspicious_ranges:
+                if start <= code_point <= end:
+                    # Additional check: only flag if it's a letter/digit that could be confused
+                    category = unicodedata.category(char)
+                    if category in ['Ll', 'Lu', 'Nd', 'Lm']:  # Letter lowercase, uppercase, digit, modifier
+                        suspicious_chars.append(char)
+                        break
+
+        # Log suspicious characters for analysis
+        if suspicious_chars:
+            logging.warning(f"Suspicious Unicode characters detected: {''.join(suspicious_chars)}")
+
+        return normalized
+
+    def _recursive_decode(self, input_text: str, max_depth: int = 5) -> str:
+        """
+        Recursively decode URL-encoded and hex-encoded content.
+        Prevents multi-layer encoding attacks.
+        """
+        decoded = input_text
+        depth = 0
+
+        while depth < max_depth:
+            previous = decoded
+
+            # URL decode
+            try:
+                decoded = urllib.parse.unquote(decoded)
+            except Exception:
+                break
+
+            # Hex decode common patterns
+            decoded = self._decode_hex_patterns(decoded)
+
+            # Check if decoding changed the content
+            if decoded == previous:
+                break
+
+            depth += 1
+
+            # Safety check: if decoded content is much longer, it might be decompression bomb
+            if len(decoded) > len(input_text) * 10:
+                logging.warning("Potential decompression bomb detected in recursive decoding")
+                return input_text  # Return original to prevent DoS
+
+        return decoded
+
+    def _decode_hex_patterns(self, text: str) -> str:
+        """Decode common hex encoding patterns"""
+        # Decode %XX patterns (URL encoding)
+        def url_hex_replace(match):
+            try:
+                hex_val = match.group(1)
+                return chr(int(hex_val, 16))
+            except (ValueError, OverflowError):
+                return match.group(0)  # Return original if invalid
+
+        # Decode \xXX patterns (Python hex escapes)
+        def python_hex_replace(match):
+            try:
+                hex_val = match.group(1)
+                return chr(int(hex_val, 16))
+            except (ValueError, OverflowError):
+                return match.group(0)  # Return original if invalid
+
+        # Pattern for %XX where XX are hex digits (URL encoding)
+        url_hex_pattern = re.compile(r'%([0-9a-fA-F]{2})')
+        text = url_hex_pattern.sub(url_hex_replace, text)
+
+        # Pattern for \xXX where XX are hex digits (Python hex escapes)
+        python_hex_pattern = re.compile(r'\\x([0-9a-fA-F]{2})')
+        text = python_hex_pattern.sub(python_hex_replace, text)
+
+        return text
 
     def validate_and_sanitize(self, input_text: str) -> Tuple[bool, str]:
         """Validate and sanitize input text and return (is_valid, sanitized_text or reason)"""
@@ -338,6 +450,15 @@ class InputValidator:
 
         if not input_text.strip():
             return False, "Empty input"
+
+        # Step 1: Unicode normalization to prevent homograph attacks
+        normalized_input = self._normalize_unicode(input_text)
+
+        # Step 2: Recursive URL/Hex decoding to reveal hidden payloads
+        decoded_input = self._recursive_decode(normalized_input)
+
+        # Use the decoded and normalized input for all subsequent checks
+        input_text = decoded_input
 
         # Check for mathematical attack patterns specifically
         math_attack_detected = self._detect_mathematical_attacks(input_text)

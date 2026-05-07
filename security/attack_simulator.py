@@ -10,7 +10,7 @@ import time
 import random
 import string
 from typing import List, Dict, Tuple
-import security
+import security.security as security
 import core_logic
 
 

@@ -2926,3 +2926,39 @@
 2026-05-07 23:06:21,754 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
 2026-05-07 23:06:21,754 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
 2026-05-07 23:06:21,755 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,756 - mayari_security - WARNING - Generated new encryption key - store securely!
+2026-05-07 23:45:56,781 - mayari_security - WARNING - Generated new encryption key - store securely!
+2026-05-07 23:45:56,781 - mayari_security - WARNING - Generated new encryption key - store securely!
+2026-05-07 23:45:56,801 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,801 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,802 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,802 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,804 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,804 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,805 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,805 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,807 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,807 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,810 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,810 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,816 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,816 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,821 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,821 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,824 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:45:56,824 - mayari_security - WARNING - Blocked request from blocklisted IP: 127.0.0.1
+2026-05-07 23:46:03,260 - mayari_security - WARNING - Generated new encryption key - store securely!
+2026-05-07 23:46:03,267 - mayari_security - WARNING - Generated new encryption key - store securely!
+2026-05-07 23:46:03,267 - mayari_security - WARNING - Generated new encryption key - store securely!
+2026-05-07 23:46:03,276 - mayari_security - WARNING - Known threat detected for 192.168.1.2: Known threat pattern: <script.*?>.*?</script>
+2026-05-07 23:46:03,276 - mayari_security - WARNING - Known threat detected for 192.168.1.2: Known threat pattern: <script.*?>.*?</script>
+2026-05-07 23:46:03,283 - mayari_security - WARNING - Input validation failed for 192.168.1.3: Security violation: Xss detected
+2026-05-07 23:46:03,283 - mayari_security - WARNING - Input validation failed for 192.168.1.3: Security violation: Xss detected
+2026-05-07 23:46:03,284 - mayari_security - WARNING - Input validation failed for 192.168.1.4: Security violation: Xss detected
+2026-05-07 23:46:03,284 - mayari_security - WARNING - Input validation failed for 192.168.1.4: Security violation: Xss detected
+2026-05-07 23:46:03,289 - mayari_security - WARNING - Input validation failed for 192.168.1.5: Security violation: Xss detected
+2026-05-07 23:46:03,289 - mayari_security - WARNING - Input validation failed for 192.168.1.5: Security violation: Xss detected
+2026-05-07 23:46:03,304 - mayari_security - WARNING - Input validation failed for 192.168.1.8: Security violation: Sql Injection detected
+2026-05-07 23:46:03,304 - mayari_security - WARNING - Input validation failed for 192.168.1.8: Security violation: Sql Injection detected
+2026-05-07 23:46:03,307 - mayari_security - WARNING - Input validation failed for 192.168.1.9: Security violation: Sql Injection detected
+2026-05-07 23:46:03,307 - mayari_security - WARNING - Input validation failed for 192.168.1.9: Security violation: Sql Injection detected

@@ -1,6 +1,6 @@
 import re
-from education import EducationModule
-from security import SecurityManager, SecurityViolationError
+from education_content.education import EducationModule
+from security.security import SecurityManager, SecurityViolationError
 
 class MayariCore:
     def __init__(self):

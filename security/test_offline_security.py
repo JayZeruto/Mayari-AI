@@ -7,7 +7,7 @@ Tests all offline security capabilities to ensure Mayari works without internet 
 import sys
 import os
 import time
-from security import SecurityManager, SecurityConfig
+from security.security import SecurityManager, SecurityConfig
 
 def test_offline_security():
     """Test all offline security features"""

@@ -7,7 +7,7 @@ Shows Mayari AI working completely offline with full security protection.
 import sys
 import os
 from core_logic import MayariCore
-from security import SecurityConfig
+from security.security import SecurityConfig
 
 def demonstrate_offline_mayari():
     """Demonstrate Mayari AI working offline with security"""
