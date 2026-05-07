@@ -1,0 +1,18 @@
+{
+  "level": "generic",
+  "subject": "science",
+  "items": [
+    {
+      "id": "what_is_photosynthesis",
+      "title": "What is photosynthesis?",
+      "keywords": ["photosynthesis", "plants", "sunlight", "energy"],
+      "response": "Photosynthesis is the process plants use to convert sunlight into energy and food. Plants take in light, water, and carbon dioxide, and produce sugar and oxygen."
+    },
+    {
+      "id": "what_is_the_water_cycle",
+      "title": "What is the water cycle?",
+      "keywords": ["water cycle", "evaporation", "condensation", "precipitation"],
+      "response": "The water cycle is how water moves around Earth. Water evaporates from oceans and lakes, condenses into clouds, and falls back as rain or snow, then flows back to rivers and oceans."
+    }
+  ]
+}

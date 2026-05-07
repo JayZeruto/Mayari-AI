@@ -1,0 +1,17 @@
+{
+  "level": "college",
+  "items": [
+    {
+      "id": "ethical_hacking",
+      "title": "What is ethical hacking?",
+      "keywords": ["ethical hacking", "penetration testing", "security testing"],
+      "response": "Ethical hacking is when security experts test computer systems to find weaknesses before bad actors can exploit them. It is used to improve protection and help companies fix security problems."
+    },
+    {
+      "id": "what_is_jailbreaking",
+      "title": "What is jailbreaking?",
+      "keywords": ["jailbreaking", "rooting", "unlocking"],
+      "response": "Jailbreaking is the process of removing restrictions on a device, such as a phone or tablet. It is studied in security courses to understand the risks and why manufacturers put protections in place."
+    }
+  ]
+}

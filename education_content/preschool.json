@@ -1,0 +1,17 @@
+{
+  "level": "preschool",
+  "items": [
+    {
+      "id": "what_is_a_computer",
+      "title": "What is a computer?",
+      "keywords": ["computer", "machine", "device"],
+      "response": "A computer is a machine that helps people solve problems, draw pictures, and learn new things. It can follow instructions and show information on a screen."
+    },
+    {
+      "id": "what_is_the_internet",
+      "title": "What is the internet?",
+      "keywords": ["internet", "web", "online"],
+      "response": "The internet is like a big neighborhood of computers that can share messages, pictures, and videos. It helps people talk to each other from far away."
+    }
+  ]
+}

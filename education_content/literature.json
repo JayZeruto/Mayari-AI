@@ -1,0 +1,18 @@
+{
+  "level": "generic",
+  "subject": "literature",
+  "items": [
+    {
+      "id": "what_is_a_metaphor",
+      "title": "What is a metaphor?",
+      "keywords": ["metaphor", "literary device", "figure of speech"],
+      "response": "A metaphor is a figure of speech that compares two different things by saying one IS the other, without using 'like' or 'as'. For example: 'Time is money' is a metaphor."
+    },
+    {
+      "id": "what_is_symbolism",
+      "title": "What is symbolism?",
+      "keywords": ["symbolism", "symbol", "meaning", "literature"],
+      "response": "Symbolism is when an object, color, or character represents a deeper meaning or idea. For example, a dove often symbolizes peace in stories and art."
+    }
+  ]
+}

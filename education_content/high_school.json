@@ -1,0 +1,17 @@
+{
+  "level": "high_school",
+  "items": [
+    {
+      "id": "what_is_malware",
+      "title": "What is malware?",
+      "keywords": ["malware", "virus", "ransomware", "spyware"],
+      "response": "Malware is software made to damage or take control of computers. In high school cybersecurity, students learn how malware works so they can protect systems and keep information safe."
+    },
+    {
+      "id": "what_is_cybersecurity",
+      "title": "What is cybersecurity?",
+      "keywords": ["cybersecurity", "security", "information security", "infosec"],
+      "response": "Cybersecurity is the practice of defending computers, networks, and data from attacks. It includes safe coding, passwords, encryption, and finding vulnerabilities before attackers do."
+    }
+  ]
+}

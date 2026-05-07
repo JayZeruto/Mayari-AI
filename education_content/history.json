@@ -1,0 +1,18 @@
+{
+  "level": "generic",
+  "subject": "history",
+  "items": [
+    {
+      "id": "what_was_the_industrial_revolution",
+      "title": "What was the Industrial Revolution?",
+      "keywords": ["industrial revolution", "factory", "steam", "machines", "manufacturing"],
+      "response": "The Industrial Revolution was a period of history when people invented machines and factories changed how things were made. It began in the late 1700s and changed society forever."
+    },
+    {
+      "id": "what_was_the_renaissance",
+      "title": "What was the Renaissance?",
+      "keywords": ["renaissance", "art", "culture", "rebirth", "middle ages"],
+      "response": "The Renaissance was a period of renewed interest in art, science, and learning. It began in Italy around the 1300s and marked the end of the Middle Ages and the beginning of modern Europe."
+    }
+  ]
+}
