@@ -1,0 +1,17 @@
+# Legal Disclaimer & Ethical Framework
+
+## 1. Professional Nature of Assistance
+Mayari AI is a personal research project designed as a localized digital assistant. While it is programmed to provide technical translations and educational information, it is **not** a substitute for professional legal, medical, or financial advice. All technical system explanations should be verified before performing major system modifications.
+
+## 2. Technical Accuracy & "Hallucinations"
+Mayari utilizes a "Strict Logic" framework to minimize misinformation. However, as an AI-driven tool, users should be aware that technical data can evolve. The developer is not liable for errors, omissions, or the results obtained from the use of this information.
+
+## 3. Security & Ethical Boundaries
+* **Non-Malicious Use:** Mayari is built with guardrails to prevent the generation of malicious code or instructions.
+* **Anti-Jailbreaking:** This project includes ongoing research into prompt-injection mitigation to ensure the assistant remains within its defined ethical parameters.
+
+## 4. Privacy & Data Handling
+Mayari is designed as a **localized service**. No user data, system logs, or personal conversations are transmitted to the developer or external third-party servers, aligning with "Privacy by Design" principles.
+
+---
+*Developed by Jasmine Zeruto as part of an ongoing study in AI Compliance and Secure Automation.*
