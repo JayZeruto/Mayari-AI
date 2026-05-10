@@ -13,5 +13,8 @@ Mayari utilizes a "Strict Logic" framework to minimize misinformation. However, 
 ## 4. Privacy & Data Handling
 Mayari is designed as a **localized service**. No user data, system logs, or personal conversations are transmitted to the developer or external third-party servers, aligning with "Privacy by Design" principles.
 
+## 5. Use at your own risk
+* ** This software is provided 'as-is' without any express or implied warranties. The delevoper assumes no resposiblity for any system 
+* ** instability or data loss reulsting from the use of this reasearch project.
 ---
 *Developed by Jasmine Zeruto as part of an ongoing study in AI Compliance and Secure Automation.*
